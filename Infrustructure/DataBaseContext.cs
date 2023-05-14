@@ -9,11 +9,11 @@ namespace Infrustructure
 {
     public class DataBaseContext : DbContext
     {
-        public DbSet<Core.Models.SampleData.AnyModel> MyModels { get; set; }
+        public DbSet<Core.Models.Entity.AnyModel> MyModels { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public DataBaseContext(DbContextOptions<DataBaseContext> options) : base(options)
         {
-            optionsBuilder.UseSqlServer("Server=myServerAddress;Database=myDataBase;User Id=myUsername;Password=myPassword;");
         }
+
     }
 }

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Infrustructure.AnyModel
 {
-    public interface IAnyModelRepository : Base.BaseRepository.IRepository<Core.Models.SampleData.AnyModel>
+    public interface IAnyModelRepository : Base.BaseRepository.IRepository<Core.Models.Entity.AnyModel>
     {
+        Task<Core.Models.Entity.AnyModel> GetByCustomerNumber(string CustomerNumber);
     }
 }

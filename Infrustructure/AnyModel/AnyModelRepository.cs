@@ -2,10 +2,15 @@
 
 namespace Infrustructure.AnyModel
 {
-    public class AnyModelRepository : EntityFramework.Repository.Repository<Core.Models.SampleData.AnyModel>, IAnyModelRepository
+    public class AnyModelRepository : EntityFramework.Repository.Repository<Core.Models.Entity.AnyModel>, IAnyModelRepository
     {
-        public AnyModelRepository(DbContext databaseContext) : base(databaseContext)
+        public AnyModelRepository(DataBaseContext databaseContext) : base(databaseContext)
         {
+        }
+
+        public async Task<Core.Models.Entity.AnyModel> GetByCustomerNumber(string CustomerNumber)
+        {
+            return await DbSet.Where(current => current.Customernumber == CustomerNumber).FirstAsync();
         }
     }
 }

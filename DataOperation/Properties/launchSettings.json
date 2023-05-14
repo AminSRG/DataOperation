@@ -16,7 +16,13 @@
       "launchUrl": "swagger",
       "applicationUrl": "https://localhost:7298;http://localhost:5235",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "SQL_PORT": "30010",
+        "SQL_USER": "root",
+        "SQL_HOST": "10.192.65.44",
+        "SQL_PASS": "3KaPBPOEH5",
+        "ApiBaseUrl": "https://localhost:5000",
+        "AllowedOrigins": "*"
       }
     },
     "IIS Express": {

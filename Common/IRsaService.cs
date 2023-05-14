@@ -1,6 +1,6 @@
 ﻿namespace Common
 {
-    public interface IRsaRepository
+    public interface IRsaService
     {
         string Encrypt(string plaintext);
         string Decrypt(string ciphertext);

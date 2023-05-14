@@ -1,7 +1,8 @@
-﻿namespace Core.Models.SampleData
+﻿namespace Core.Models.Entity
 {
     public class AnyModel : BaseModel.BaseEntity
     {
+        public string Customernumber { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
         public bool IsActive { get; set; }

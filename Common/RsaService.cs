@@ -3,7 +3,7 @@ using System.Text;
 
 namespace Common
 {
-    public class RsaRepository : IRsaRepository
+    public class RsaService : IRsaService
     {
         public string Encrypt(string plaintext)
         {
