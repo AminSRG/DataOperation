@@ -1,5 +1,5 @@
 ﻿using Infrustructure;
-using Infrustructure.AnyModel;
+using Infrustructure.DataExample;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure
@@ -10,7 +10,7 @@ namespace Infrastructure
         {
             services.AddDbContext<DataBaseContext>();
 
-            services.AddTransient<IAnyModelRepository, AnyModelRepository>();
+            services.AddTransient<IDataExampleRepository, DataExampleRepository>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             return services;

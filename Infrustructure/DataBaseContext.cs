@@ -9,7 +9,7 @@ namespace Infrustructure
 {
     public class DataBaseContext : DbContext
     {
-        public DbSet<Core.Models.Entity.AnyModel> MyModels { get; set; }
+        public DbSet<Core.Models.Entity.DataExample> MyModels { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

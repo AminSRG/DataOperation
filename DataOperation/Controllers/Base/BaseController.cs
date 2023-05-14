@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DataOperation.Controllers
+namespace DataOperation.Controllers.Base
 {
     public class BaseController<TObject> : ControllerBase
     {

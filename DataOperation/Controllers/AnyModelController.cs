@@ -1,5 +1,5 @@
-using Application.AnyModel.Command;
-using Common;
+using Application.DataExample.Command;
+using DataOperation.Controllers.Base;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,19 +7,17 @@ namespace DataOperation.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AnyModelController : BaseController<AnyModelController>
+    public class DataExampleController : BaseController<DataExampleController>
     {
-        private readonly IRsaService _rsaService;
-        public AnyModelController(ILogger<AnyModelController> logger, IMediator mediator, IRsaService rsaService) : base(logger, mediator)
+        public DataExampleController(ILogger<DataExampleController> logger, IMediator mediator) : base(logger, mediator)
         {
-            _rsaService = rsaService;
         }
 
         [HttpPost("Create")]
         [ProducesResponseType(typeof(FluentResults.Result<bool>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(FluentResults.Result), StatusCodes.Status400BadRequest)]
         [Produces("application/json")]
-        public async Task<IActionResult> CreateAnyModel([FromBody] CreateAnyModelCommand command)
+        public async Task<IActionResult> CreateDataExample([FromBody] CreateDataExampleCommand command)
         {
             var result = await _mediator.Send(command);
 
@@ -29,10 +27,10 @@ namespace DataOperation.Controllers
         }
 
         [HttpPost("Read")]
-        [ProducesResponseType(typeof(FluentResults.Result<Core.Models.Dto.AnyModelDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(FluentResults.Result<Core.Models.Dto.DataExampleDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(FluentResults.Result), StatusCodes.Status400BadRequest)]
         [Produces("application/json")]
-        public async Task<IActionResult> ReadAnyModel([FromBody] ReadAnyModelCommand command)
+        public async Task<IActionResult> ReadDataExample([FromBody] ReadDataExampleCommand command)
         {
             var result = await _mediator.Send(command);
 
@@ -45,7 +43,7 @@ namespace DataOperation.Controllers
         [ProducesResponseType(typeof(FluentResults.Result<bool>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(FluentResults.Result), StatusCodes.Status400BadRequest)]
         [Produces("application/json")]
-        public async Task<IActionResult> UpdateAnyModel([FromBody] UpdateAnyModelCommand command)
+        public async Task<IActionResult> UpdateDataExample([FromBody] UpdateDataExampleCommand command)
         {
             var result = await _mediator.Send(command);
 
@@ -58,7 +56,7 @@ namespace DataOperation.Controllers
         [ProducesResponseType(typeof(FluentResults.Result<bool>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(FluentResults.Result), StatusCodes.Status400BadRequest)]
         [Produces("application/json")]
-        public async Task<IActionResult> DeleteAnyModel([FromBody] DeleteAnyModelCommand command)
+        public async Task<IActionResult> DeleteDataExample([FromBody] DeleteDataExampleCommand command)
         {
             var result = await _mediator.Send(command);
 
@@ -66,16 +64,4 @@ namespace DataOperation.Controllers
 
             return Ok(result);
         }
-
-        [HttpPost("StringEncrypt")]
-        [ProducesResponseType(typeof(FluentResults.Result<string>), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(FluentResults.Result), StatusCodes.Status400BadRequest)]
-        [Produces("application/json")]
-        public async Task<IActionResult> DecryptedAnyModel(string command)
-        {
-            var resualt = new FluentResults.Result<string>();
-
-            return Ok(resualt.WithValue(_rsaService.Encrypt(command)));
-        }
     }
-}

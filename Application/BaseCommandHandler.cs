@@ -19,6 +19,5 @@ namespace oc.Application
             _httpContextAccessor = httpContextAccessor;
             _logger = logger;
         }
-
     }
 }

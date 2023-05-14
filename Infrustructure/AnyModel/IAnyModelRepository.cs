@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrustructure.AnyModel
+namespace Infrustructure.DataExample
 {
-    public interface IAnyModelRepository : Base.BaseRepository.IRepository<Core.Models.Entity.AnyModel>
+    public interface IDataExampleRepository : Base.BaseRepository.IRepository<Core.Models.Entity.DataExample>
     {
-        Task<Core.Models.Entity.AnyModel> GetByCustomerNumber(string CustomerNumber);
+        Task<Core.Models.Entity.DataExample> GetByCustomerNumber(string CustomerNumber);
     }
 }

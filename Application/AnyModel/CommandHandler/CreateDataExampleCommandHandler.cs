@@ -1,4 +1,4 @@
-﻿using Application.AnyModel.Command;
+﻿using Application.DataExample.Command;
 using Azure.Core;
 using Base.BaseRepository;
 using Common;
@@ -11,28 +11,28 @@ using Microsoft.Extensions.Logging;
 using oc.Application;
 using System.Text.Json;
 
-namespace Application.AnyModel.CommandHandler
+namespace Application.DataExample.CommandHandler
 {
-    public class CreateAnyModelCommandHandler : BaseCommandHandler<CreateAnyModelCommandHandler>,
-    IRequestHandler<CreateAnyModelCommand, Result<bool>>
+    public class CreateDataExampleCommandHandler : BaseCommandHandler<CreateDataExampleCommandHandler>,
+    IRequestHandler<CreateDataExampleCommand, Result<bool>>
     {
-        public CreateAnyModelCommandHandler(ILogger<CreateAnyModelCommandHandler> logger,
+        public CreateDataExampleCommandHandler(ILogger<CreateDataExampleCommandHandler> logger,
             IHttpContextAccessor context, Infrustructure.IUnitOfWork unitOfWork, IRsaService rsaService) : base(rsaService, unitOfWork, context, logger)
         {
         }
 
-        async Task<Result<bool>> IRequestHandler<CreateAnyModelCommand, Result<bool>>.Handle(
-            CreateAnyModelCommand request, CancellationToken cancellationToken)
+        async Task<Result<bool>> IRequestHandler<CreateDataExampleCommand, Result<bool>>.Handle(
+            CreateDataExampleCommand request, CancellationToken cancellationToken)
         {
             var result = new Result<bool>();
 
             var data = _rsaService.Decrypt(request.Data);
-            var dto = JsonSerializer.Deserialize<Core.Models.Dto.AnyModelDto>(data);
-            var anyModel = new MapHelper().DynamicMap<Core.Models.Dto.AnyModelDto, Core.Models.Entity.AnyModel>(dto);
+            var dto = JsonSerializer.Deserialize<Core.Models.Dto.DataExampleDto>(data);
+            var DataExample = new MapHelper().DynamicMap<Core.Models.Dto.DataExampleDto, Core.Models.Entity.DataExample>(dto);
 
             try
             {
-                var insertRes = await _unitOfWork._anyModelRepository.InsertAsync(anyModel);
+                var insertRes = await _unitOfWork._DataExampleRepository.InsertAsync(DataExample);
 
                 if (insertRes)
                 {

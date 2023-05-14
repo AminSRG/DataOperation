@@ -1,9 +1,9 @@
-﻿using Infrustructure.AnyModel;
+﻿using Infrustructure.DataExample;
 
 namespace Infrustructure
 {
     public interface IUnitOfWork : Base.BaseRepository.IUnitOfWork
     {
-        public IAnyModelRepository _anyModelRepository { get; }
+        public IDataExampleRepository _DataExampleRepository { get; }
     }
 }

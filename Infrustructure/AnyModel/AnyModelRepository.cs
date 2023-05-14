@@ -1,14 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Infrustructure.AnyModel
+namespace Infrustructure.DataExample
 {
-    public class AnyModelRepository : EntityFramework.Repository.Repository<Core.Models.Entity.AnyModel>, IAnyModelRepository
+    public class DataExampleRepository : EntityFramework.Repository.Repository<Core.Models.Entity.DataExample>, IDataExampleRepository
     {
-        public AnyModelRepository(DataBaseContext databaseContext) : base(databaseContext)
+        public DataExampleRepository(DataBaseContext databaseContext) : base(databaseContext)
         {
         }
 
-        public async Task<Core.Models.Entity.AnyModel> GetByCustomerNumber(string CustomerNumber)
+        public async Task<Core.Models.Entity.DataExample> GetByCustomerNumber(string CustomerNumber)
         {
             return await DbSet.Where(current => current.Customernumber == CustomerNumber).FirstAsync();
         }

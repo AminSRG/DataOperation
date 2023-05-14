@@ -1,4 +1,4 @@
-﻿using Application.AnyModel.Command;
+﻿using Application.DataExample.Command;
 using Common;
 using FluentResults;
 using Infrustructure;
@@ -8,34 +8,34 @@ using Microsoft.Extensions.Logging;
 using oc.Application;
 using System.Text.Json;
 
-namespace Application.AnyModel.CommandHandler
+namespace Application.DataExample.CommandHandler
 {
-    public class DeleteAnyModelCommandHandler : BaseCommandHandler<DeleteAnyModelCommandHandler>,
-    IRequestHandler<DeleteAnyModelCommand, Result<bool>>
+    public class DeleteDataExampleCommandHandler : BaseCommandHandler<DeleteDataExampleCommandHandler>,
+    IRequestHandler<DeleteDataExampleCommand, Result<bool>>
     {
-        public DeleteAnyModelCommandHandler(ILogger<DeleteAnyModelCommandHandler> logger,
+        public DeleteDataExampleCommandHandler(ILogger<DeleteDataExampleCommandHandler> logger,
             IHttpContextAccessor context, IUnitOfWork unitOfWork, IRsaService rsaService) : base(rsaService, unitOfWork, context, logger)
         {
         }
 
-        async Task<Result<bool>> IRequestHandler<DeleteAnyModelCommand, Result<bool>>.Handle(
-            DeleteAnyModelCommand request, CancellationToken cancellationToken)
+        async Task<Result<bool>> IRequestHandler<DeleteDataExampleCommand, Result<bool>>.Handle(
+            DeleteDataExampleCommand request, CancellationToken cancellationToken)
         {
             var result = new Result<bool>();
 
             var data = _rsaService.Decrypt(request.Data);
-            var dto = JsonSerializer.Deserialize<Core.Models.Dto.AnyModelDto>(data);
+            var dto = JsonSerializer.Deserialize<Core.Models.Dto.DataExampleDto>(data);
 
             try
             {
-                var anyModel = await _unitOfWork._anyModelRepository.GetByCustomerNumber(dto.CustomerNumber);
-                if (anyModel == null)
+                var DataExample = await _unitOfWork._DataExampleRepository.GetByCustomerNumber(dto.CustomerNumber);
+                if (DataExample == null)
                 {
                     result.WithError("Model not found!");
                     return result;
                 }
 
-                await _unitOfWork._anyModelRepository.DeleteAsync(anyModel);
+                await _unitOfWork._DataExampleRepository.DeleteAsync(DataExample);
 
                 result.WithSuccess("Success!");
                 result.WithValue(true);

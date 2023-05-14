@@ -1,4 +1,4 @@
-﻿using Infrustructure.AnyModel;
+﻿using Infrustructure.DataExample;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +10,11 @@ namespace Infrustructure
     public class UnitOfWork : IUnitOfWork
     {
         public bool IsDisposed { get; set; }
-        public IAnyModelRepository _anyModelRepository { get; set; }
+        public IDataExampleRepository _DataExampleRepository { get; set; }
 
-        public UnitOfWork(IAnyModelRepository anyModelRepository)
+        public UnitOfWork(IDataExampleRepository DataExampleRepository)
         {
-            _anyModelRepository = anyModelRepository;
+            _DataExampleRepository = DataExampleRepository;
         }
 
         /// <summary>
