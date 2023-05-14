@@ -37,11 +37,11 @@ builder.Services.AddCors(options =>
 });
 
 #region MySql
-var host = Environment.GetEnvironmentVariable("MSSQL_HOST");
-var port = Environment.GetEnvironmentVariable("MSSQL_PORT");
-var db = Environment.GetEnvironmentVariable("MSSQL_DB");
-var user = Environment.GetEnvironmentVariable("MSSQL_USER");
-var pass = Environment.GetEnvironmentVariable("MSSQL_PASS");
+var host = Environment.GetEnvironmentVariable("SQL_HOST");
+var port = Environment.GetEnvironmentVariable("SQL_PORT");
+var db = Environment.GetEnvironmentVariable("SQL_DB");
+var user = Environment.GetEnvironmentVariable("SQL_USER");
+var pass = Environment.GetEnvironmentVariable("SQL_PASS");
 
 
 var connectionString =

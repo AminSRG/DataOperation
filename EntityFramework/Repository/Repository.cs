@@ -133,7 +133,7 @@ namespace EntityFramework.Repository
             return result;
         }
 
-        private async void SaveAsync()
+        private async Task SaveAsync()
         {
             await DatabaseContext.SaveChangesAsync();
         }

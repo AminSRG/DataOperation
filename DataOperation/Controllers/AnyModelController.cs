@@ -1,18 +1,21 @@
 using Application.AnyModel.Command;
+using Common;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DataOperation.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class AnyModelController : BaseController<AnyModelController>
     {
-        public AnyModelController(ILogger<AnyModelController> logger, IMediator mediator) : base(logger, mediator)
+        private readonly IRsaService _rsaService;
+        public AnyModelController(ILogger<AnyModelController> logger, IMediator mediator, IRsaService rsaService) : base(logger, mediator)
         {
+            _rsaService = rsaService;
         }
 
-        [HttpPost("CreateAnyModel")]
+        [HttpPost("Create")]
         [ProducesResponseType(typeof(FluentResults.Result<bool>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(FluentResults.Result), StatusCodes.Status400BadRequest)]
         [Produces("application/json")]
@@ -25,7 +28,7 @@ namespace DataOperation.Controllers
             return Ok(result);
         }
 
-        [HttpPost("ReadAnyModel")]
+        [HttpPost("Read")]
         [ProducesResponseType(typeof(FluentResults.Result<Core.Models.Dto.AnyModelDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(FluentResults.Result), StatusCodes.Status400BadRequest)]
         [Produces("application/json")]
@@ -38,7 +41,7 @@ namespace DataOperation.Controllers
             return Ok(result);
         }
 
-        [HttpPost("UpdateAnyModel")]
+        [HttpPost("Update")]
         [ProducesResponseType(typeof(FluentResults.Result<bool>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(FluentResults.Result), StatusCodes.Status400BadRequest)]
         [Produces("application/json")]
@@ -51,7 +54,7 @@ namespace DataOperation.Controllers
             return Ok(result);
         }
 
-        [HttpPost("DeleteAnyModel")]
+        [HttpPost("Delete")]
         [ProducesResponseType(typeof(FluentResults.Result<bool>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(FluentResults.Result), StatusCodes.Status400BadRequest)]
         [Produces("application/json")]
@@ -62,6 +65,17 @@ namespace DataOperation.Controllers
             if (result.IsFailed) return BadRequest(result);
 
             return Ok(result);
+        }
+
+        [HttpPost("StringEncrypt")]
+        [ProducesResponseType(typeof(FluentResults.Result<string>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(FluentResults.Result), StatusCodes.Status400BadRequest)]
+        [Produces("application/json")]
+        public async Task<IActionResult> DecryptedAnyModel(string command)
+        {
+            var resualt = new FluentResults.Result<string>();
+
+            return Ok(resualt.WithValue(_rsaService.Encrypt(command)));
         }
     }
 }

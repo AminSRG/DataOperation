@@ -17,10 +17,10 @@
       "applicationUrl": "https://localhost:7298;http://localhost:5235",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "SQL_PORT": "30010",
-        "SQL_USER": "root",
-        "SQL_HOST": "10.192.65.44",
-        "SQL_PASS": "3KaPBPOEH5",
+        "SQL_PORT": "",
+        "SQL_USER": "",
+        "SQL_HOST": "",
+        "SQL_PASS": "",
         "ApiBaseUrl": "https://localhost:5000",
         "AllowedOrigins": "*"
       }

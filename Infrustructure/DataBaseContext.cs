@@ -11,9 +11,9 @@ namespace Infrustructure
     {
         public DbSet<Core.Models.Entity.AnyModel> MyModels { get; set; }
 
-        public DataBaseContext(DbContextOptions<DataBaseContext> options) : base(options)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            optionsBuilder.UseSqlServer("Server=WIN-PUD9TJSCPQ8;Database=DataExample;Trusted_Connection=True;");
         }
-
     }
 }

@@ -11,7 +11,7 @@ namespace Application
         {
             services.AddMediatR(current => current.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            services.AddScoped<IRsaService, RsaService>();
+            services.AddSingleton<IRsaService, RsaService>();
 
             return services;
         }
